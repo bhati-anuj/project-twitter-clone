@@ -1,0 +1,28 @@
+.container{
+   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.btn{
+    background-color: white;
+    border-style: none;
+    border-radius: 50px;
+    width: 15vw;
+    height: 10vh;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile{
+    border-radius: 50%;
+    width: 4vw;
+    height: 8vh;
+    flex-direction: row;
+    align-items: start;
+}

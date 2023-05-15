@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+ 
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+
+}
+.nameDiv {
+  margin-left: 10px;
+  height: 100%;
+  width: 50%;
+}
+.name {
+  margin-top: 0px;
+
+  font-weight: 500;
+  font-size:large;
+}
+.userName {
+  margin-top: -15px;
+
+  font-size: small;
+}
+.profile {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  
+}
+.followBtnDiv {
+    display: flex;
+   
+   
+    align-items: center;
+   
+  width: 30%;
+  
+}
+.followBtn{
+    background-color: rgb(8, 9, 8) ;
+    border-style: none;
+    height: 50%;
+    color: white;
+    border-radius: 50px;
+    
+}

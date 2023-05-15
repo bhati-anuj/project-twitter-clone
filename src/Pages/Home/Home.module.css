@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.feed {
+  width: 50vw;
+  height: 100vh;
+}
+
+.rightDiv {
+  border-radius: 5px solid rgb(60, 169, 21);
+  width: 25vw;
+  height: 100vh;
+}

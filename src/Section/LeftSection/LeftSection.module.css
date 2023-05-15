@@ -1,0 +1,56 @@
+.Container{
+  
+    width: 25vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconDiv{
+   
+   width: 20vw;
+    height: 100vh;
+   
+    /* display: flex; */
+    /* flex-direction: column; */
+    justify-content:space-around;
+    align-items:center;
+}
+
+.listDiv{
+    margin-left: 3rem;
+    display: flex;
+    height: 70vh;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.icons{
+    background-color: white;
+    border: 2px solid white;  
+    border-radius: 25px;
+    
+   height: 3rem;
+   
+   font-size: 20px;
+  }
+.tweetBtnDiv{
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center
+    
+}
+.tweetBtn{
+    border-style: none;
+    width: 15vw;
+    height: 6vh;
+    background-color: rgb(29, 155, 240);
+    border-radius: 50px;
+    color: white;
+    font-weight: 800;
+    
+}
