@@ -13,7 +13,7 @@ const PopOver = () =>{
    const tologin =useNavigate()
    const [loginStatus, setLoginStatus] = useRecoilState(isLoginAtom)
 
-    const user = JSON.parse(localStorage.getItem("UserDetail"))
+    // const user = JSON.parse(localStorage.getItem("UserDetail"))
 
   
     
@@ -24,6 +24,7 @@ const PopOver = () =>{
     }
 
     return(
+
         
         <PopupState variant="popover" popupId="demo-popup-popover" >
             {(popupState) => (
@@ -31,8 +32,8 @@ const PopOver = () =>{
                     <button className={style.btn}
                     {...bindTrigger(popupState)}>
                         <img src="https://i.pravatar.cc/150?img=0" alt="profile" className={style.profile} />
-                        {user[0].name}
-                        
+                        {/* {user[0].name} */}
+                        <h1> User Name</h1>
                         
                        
                         <MoreHorizOutlinedIcon />
