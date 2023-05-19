@@ -43,7 +43,7 @@ function TweetForm() {
               style={{ color: "rgb(29, 155, 240)", fontSize: "1.5rem" }}
             />
             <div className={style.tweetBtnDiv}>
-              <button className={style.tweetBtn}>Tweet</button>
+              <button className={style.tweetBtn} >Tweet</button>
             </div>
           </div>
         </form>

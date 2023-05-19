@@ -3,12 +3,19 @@ import style from "./Feed.module.css";
 import FeedCard from "../../Components/FeedCard/FeedCard";
 import { tweetsAtom } from "../../Atom/Atom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import tweetData from "../MiddleSection/tweets.json";  //this is an alternative method i used it for temp
+
 
 function Feed() {
-//   const tweets = useRecoilValue(tweetsAtom);
-//   const setTweets = useSetRecoilState(tweetsAtom);
-const [tweets, setTweets] = useState(tweetData);
+  const tweets = useRecoilValue(tweetsAtom);
+  const setTweets = useSetRecoilState(tweetsAtom);
+
+
+const[showMore, setShowMore] = useState(false);
+const tweetToShow = showMore? tweets :tweets.slice(0,20);
+
+const handleShowMoreClick=()=>{
+  setShowMore((tweets) => !tweets);
+}
 
   function toggleLike(index) {
     const tweet = { ...tweets[index] };
@@ -16,6 +23,7 @@ const [tweets, setTweets] = useState(tweetData);
     const updated = [...tweets];
     tweet.isLiked = !tweet.isLiked;
     tweet.isLiked ? tweet.likeCount++ : tweet.likeCount--;
+    updated[index] = tweet;
     setTweets(updated);
   }
 
@@ -23,13 +31,19 @@ const [tweets, setTweets] = useState(tweetData);
     <>
       <div className={style.container}>
         
-        {tweets.map((tweet, index) => (
+        {tweetToShow.map((tweet, index) => (
           <FeedCard
             onToggleLike={() => toggleLike(index)}
             key={tweet.id}
             tweet={tweet}
           />
         ))}
+
+        {tweets.length > 2 &&(
+          <button href="#" onClick={handleShowMoreClick}>
+            {showMore ? "Show Less" : "Show More"}
+          </button>
+        )}
         
       </div>
     </>

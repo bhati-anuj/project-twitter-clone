@@ -12,7 +12,7 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-//Exapmle to change color
+//Example to change color
 import { blue } from "@mui/material/colors";
 
 import Buttons from "../../Components/Buttons/Buttons";

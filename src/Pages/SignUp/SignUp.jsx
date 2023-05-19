@@ -1,22 +1,21 @@
-import * as React from 'react';
-import  { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { isLoginAtom } from "../../Atom/Atom";
 import style from "./SignUp.module.css";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useSetRecoilState } from "recoil";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { monthArray, dateArray, yearArray } from "../../Utils/constants";
-import { IoLogoTwitter } from "react-icons/io5";
-import Buttons from '../../Components/Buttons/Buttons';
+import TwitterIcon from "@mui/icons-material/Twitter";
+import GoogleIcon from "@mui/icons-material/Google";
+import AppleIcon from "@mui/icons-material/Apple";
+import Buttons from "../../Components/Buttons/Buttons";
 
 const SignUp = () => {
   const [open, setOpen] = React.useState(true);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const [createAC, setCreateAC] = useState(false);
   const setLoginStatus = useSetRecoilState(isLoginAtom);
   const navigate = useNavigate();
@@ -29,13 +28,30 @@ const SignUp = () => {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [toggleEmail, setToggleEmail] = useState(false);
-  const [info, setInfo] = useState([]);
+  // const [info, setInfo] = useState([]);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [error, setError] = useState(false);
 
+  const styles = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 600,
+    height: 600,
+    bgcolor: "background.paper",
+    borderRadius: 6,
+    boxShadow: 24,
+    p: 4,
+    outline: 0,
+  };
+
   const handleNext = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,20}$/;
@@ -57,7 +73,7 @@ const SignUp = () => {
         year === ""
       ) {
         setError(true);
-        if (error == true) {
+        if (error === true) {
           alert("All field are mandatory");
         }
       } else {
@@ -67,12 +83,16 @@ const SignUp = () => {
           name: name,
           email: email,
           phone: phone,
-          email: email,
           password: password,
-          DOB: `${month + '/' + date + '/'  + year}`,
+          DOB: `${month + "/" + date + "/" + year}`,
         };
-        setInfo([...info, data]);
-        localStorage.setItem("UserDetail", JSON.stringify([...info, data]));
+
+        const info = JSON.parse(localStorage.getItem("UserDetail") || "[]");
+        info.push(data)
+        localStorage.setItem("UserDetail",JSON.stringify(info));
+        // setInfo([...info, data]);
+        // localStorage.setItem("UserDetail", JSON.stringify([...info, data]));
+
         setName("");
         setEmail("");
         setPhone("");
@@ -80,8 +100,8 @@ const SignUp = () => {
         setDate("");
         setMonth("");
         setYear("");
-        setLoginStatus(true);
-        navigate("/");
+        setLoginStatus(false);
+        navigate("/Signin");
       }
     }
   };
@@ -95,150 +115,206 @@ const SignUp = () => {
 
   return (
     <>
-      <div className={style.container}>
-        <Modal
-          open={open}
-          aria-labelledby="model-model-title"
-          aria-describedby="model-modal-description"
-        >
-          <Box>
-            {createAC ? (
-              <form onSubmit={handleNext}>
-                <h1>Create your Account</h1>
-                <TextField
-                  label="Name"
-                  variant="outlined"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  InputProps={{ style: { height: "3rem", fontSize: 20 } }}
-                />
+      <div className={style.mainContainer}>
+        <div className={style.container}>
+          <Modal
+            open={open}
+            aria-labelledby="model-model-title"
+            aria-describedby="model-modal-description"
+          >
+            <Box sx={styles}>
+              {createAC ? (
+                <form onSubmit={handleNext} className={style.formBox}>
+                  <h1 className={style.heading}>Create your Account</h1>
+                  <TextField
+                    label="Name"
+                    variant="outlined"
+                    value={name}
+                    sx={{ background: "white", width: "25rem" }}
+                    onChange={(e) => setName(e.target.value)}
+                    InputProps={{ style: { height: "3rem", fontSize: 20 } }}
+                  />
 
-                {toggleEmail ? (
-                  !emailError ? (
+                  {toggleEmail ? (
+                    !emailError ? (
+                      <TextField
+                        id="outlined-basic"
+                        label="Email"
+                        variant="outlined"
+                        value={email}
+                        sx={{ background: "white", width: "25rem" }}
+                        onchange={(e) => setEmail(e.target.value)}
+                        InputProps={{ style: { height: "3rem", fontSize: 20 } }}
+                      />
+                    ) : (
+                      <TextField
+                        error
+                        id="outlined-error-helper-text"
+                        variant="outlined"
+                        value={email}
+                        sx={{ background: "white", width: "25rem" }}
+                        onChange={(e) => setEmail(e.target.value)}
+                        label="Email"
+                        helperText="Please Enter a valid email."
+                        InputProps={{ style: { height: "3rem" } }}
+                      />
+                    )
+                  ) : (
                     <TextField
-                      label="Email"
+                      id="outlined-basic"
+                      label="Phone"
                       variant="outlined"
-                      
-                      value={email}
-                      onchange={(e) => setEmail(e.target.value)}
+                      value={phone}
+                      sx={{ background: "white", width: "25rem" }}
+                      onChange={(e) => setPhone(e.target.value)}
+                      InputProps={{ style: { height: "3rem", fontSize: 20 } }}
+                    />
+                  )}
+                  <span onClick={handleToggle} className={style.toggle}>
+                    Use{toggleEmail ? "Phone" : "Email"} instead
+                  </span>
+
+                  {!passwordError ? (
+                    <TextField
+                      label="Password"
+                      type="password"
+                      variant="outlined"
+                      sx={{ background: "white", width: "25rem" }}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       InputProps={{ style: { height: "3rem", fontSize: 20 } }}
                     />
                   ) : (
                     <TextField
                       error
-                      id="outlined-error-helper-text"
-                      variant="outlined"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      label="Email"
-                      helperText="Please Enter a valid email."
-                      InputProps={{ style: { height: '3rem' } }}
+                      label="Password"
+                      type="password"
+                      varient="outlined"
+                      sx={{ background: "white", width: "25rem" }}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      helperText="Please enter Strong Password"
+                      InputProps={{ style: { height: "3rem", fontSize: 20 } }}
                     />
-                  )
-                ) : (
-                  <TextField
-                    label="Phone"
-                    variant="outlined"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    InputProps={{ style: { height: "3rem", fontSize: 20 } }}
+                  )}
+
+                  <span className={style.date}>
+                    <select
+                      id="gMonth2"
+                      style={{
+                        width: "11rem",
+                        height: "3rem",
+                        margin: "1rem 0",
+                      }}
+                      value={month}
+                      onChange={(e) => setMonth(e.target.value)}
+                    >
+                      <option selected value="">
+                        Month
+                      </option>
+                      {monthArray.map((day) => (
+                        <option>{day}</option>
+                      ))}
+                    </select>
+
+                    <select
+                      value={date}
+                      id="gMonth2"
+                      style={{
+                        width: "5rem",
+                        height: "3rem",
+                        margin: "1rem 0",
+                      }}
+                      onChange={(e) => setDate(e.target.value)}
+                    >
+                      <option selected value="">
+                        {" "}
+                        Day{" "}
+                      </option>
+                      {dateArray.map((day) => (
+                        <option>{day}</option>
+                      ))}
+                    </select>
+
+                    <select
+                      value={year}
+                      id="gMonth2"
+                      style={{
+                        width: "7rem",
+                        height: "3rem",
+                        margin: "1rem 0",
+                      }}
+                      onChange={(e) => setYear(e.target.value)}
+                    >
+                      <option selected value="">
+                        {" "}
+                        Year
+                      </option>
+                      {yearArray.map((year) => (
+                        <option>{year}</option>
+                      ))}
+                    </select>
+                  </span>
+
+                  <Buttons
+                    Sign="Next"
+                    btnnext={handleNext}
+                    className={style.btn3}
                   />
-                )}
-                <span onClick={handleToggle}>
-                  Use{toggleEmail ? "Phone" : "Email"} instead
-                </span>
-
-                {!passwordError ? (
-                  <TextField
-                    label="Password"
-                    type="password"
-                    variant="outlined"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    InputProps={{ style: { height: "3rem", fontSize: 20 } }}
+                </form>
+              ) : (
+                <>
+                  <TwitterIcon
+                    sx={{
+                      color: "rgb(29, 155, 240)",
+                      size: "bigger",
+                      fontSize: "3rem",
+                    }}
                   />
-                ) : (
-                  <TextField
-                    error
-                    label="Password"
-                    type="password"
-                    varient="outlined"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    helperText="Please enter Strong Password"
-                    InputProps={{ style: { height: "3rem", fontSize: 20 } }}
+                  <h1 style={{ fontSize: 30, margin: "2rem 0" }}>
+                    Join Twitter Today
+                  </h1>
+
+                  <Buttons
+                    Sign="Sign in with Google "
+                    className={style.btn1}
+                    logo={<GoogleIcon style={{ fontSize: 25 }} />}
+                  ></Buttons>
+                  <br />
+
+                  <Buttons
+                    Sign="Sign in with Apple"
+                    className={style.btn1}
+                    logo={<AppleIcon style={{ fontSize: 25 }} />}
+                  >
+                    {" "}
+                  </Buttons>
+                  <br />
+
+                  <div className={style.or}>
+                    <p className={style.line}>________________</p>
+                    or
+                    <p className={style.line}>________________</p>
+                    <br />
+                  </div>
+                  <Buttons
+                    Sign="Create Account"
+                    btnnext={handleCreate}
+                    className={style.btn2}
                   />
-                )}
-
-                <span>
-                  <select
-                    value={month}
-                    onChange={(e) => setMonth(e.target.value)}
-                  >
-                    <option selected value="">
-                      Month
-                    </option>
-                    {monthArray.map((day) => (
-                      <option>{day}</option>
-                    ))}
-                  </select>
-
-                  <select
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                  >
-                    <option selected value="">
-                      {" "}
-                      Day{" "}
-                    </option>
-                    {dateArray.map((day) => (
-                      <option>{day}</option>
-                    ))}
-                  </select>
-
-                  <select
-                    value={year}
-                    onChange={(e) => setYear(e.target.value)}
-                  >
-                    <option selected value="">
-                      {" "}
-                      Year
-                    </option>
-                    {yearArray.map((year) => (
-                      <option>{year}</option>
-                    ))}
-                  </select>
-                </span>
-
-                <Buttons 
-                Sign="Next"
-                btnnext={handleNext}
-                />
-              </form>
-            ) : (
-              <>
-              
-              <IoLogoTwitter/>
-              <h1>Join Twitter Today</h1>
-              <Button>Sign in with Google </Button>
-              <Button>Sign in with Apple </Button>
-              <br/>
-              <Buttons
-              Sign="Create Account"
-              btnnext={handleCreate}
-              />
-              <p >
-                  By signing up, you agree to the Terms of Service <br />
-                  and Privacy Policy, including Cookie Use.
-                </p>
-                <div >
-                  Have an Account Already?
-                  <Link to="#">Log in</Link>
-                </div>
-              </>
-            )}
-          </Box>
-        </Modal>
+                  <p className={style.txt1}>
+                    By signing up, you agree to the Terms of Service <br />
+                    and Privacy Policy, including Cookie Use.
+                  </p>
+                  <div className={style.txt2}>
+                    Have an Account Already?
+                    <Link to="/Signin">Log in</Link>
+                  </div>
+                </>
+              )}
+            </Box>
+          </Modal>
+        </div>
       </div>
     </>
   );

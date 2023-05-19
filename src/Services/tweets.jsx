@@ -1,5 +1,6 @@
 import { api } from "./api";
 
-export function fetchTweets(){
+
+export async function fetchTweets(){
     return api.get("/tweets.json").then((response) => response.data);
 }

@@ -6,20 +6,22 @@ import style from "./PopOver.module.css";
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined'; 
 import {useNavigate} from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { isLoginAtom, usersAtom } from "../../Atom/Atom";
+import { isLoginAtom} from "../../Atom/Atom";
 
 const PopOver = () =>{
 
-   // const tologin =useNavigate()
-   // const [loginStatus, setLoginStatus] = useRecoilState(isLoginAtom)
+   const tologin =useNavigate()
+   const [loginStatus, setLoginStatus] = useRecoilState(isLoginAtom)
 
     const user = JSON.parse(localStorage.getItem("UserDetail"))
 
-    // function Loggedout(){
+  
+    
+    function Logout(){
         
-    //     setLoginStatus(false)
-    //     tologin("/signUp")
-    // }
+        setLoginStatus(false)
+        tologin("/Signin")
+    }
 
     return(
         
@@ -28,9 +30,11 @@ const PopOver = () =>{
                 <div className={style.container}>
                     <button className={style.btn}
                     {...bindTrigger(popupState)}>
-                        <img src="https://i.pravatar.cc/150?img=0" alt="profile-image" className={style.profile} />
-                        {/* {user[0].name} */}
-                        {<h4>Kon hu mai @maiNhiToKon</h4>}
+                        <img src="https://i.pravatar.cc/150?img=0" alt="profile" className={style.profile} />
+                        {user[0].name}
+                        
+                        
+                       
                         <MoreHorizOutlinedIcon />
                     </button>
                     <Popover
@@ -45,7 +49,7 @@ const PopOver = () =>{
                           }} >
 
                         <Typography sx={{ p: 2}}>Add an existing account</Typography>
-                        <Typography sx={{ p: 2 }} >Log out </Typography>
+                        <Typography sx={{ p: 2 }} onClick={Logout}>Log out </Typography>
                           </Popover>
 
                 </div>

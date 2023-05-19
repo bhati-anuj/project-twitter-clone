@@ -1,0 +1,99 @@
+.heading{
+    font-size: 25px;
+    margin-bottom: 2rem;
+}
+.btn1{
+    border: 0.5px solid rgb(202, 200, 200);
+    background-color: white;
+    outline: none;
+    width: 18rem;
+    height: 2.5rem;
+    border-radius: 2rem;
+    font-size: 15px;
+    vertical-align: center;
+}
+.btn1:hover{
+    background-color: rgb(228, 228, 228);
+    cursor: pointer;
+}
+
+.btn2{
+    color: white;
+    background-color: black;
+    outline: none;
+    width: 18rem;
+    height: 2.5rem;
+    border-radius: 2rem;
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: center;
+}
+.btn2:hover{
+    background-color: rgb(43, 42, 42);
+    cursor: pointer;
+}
+
+.txt2, .txt1{
+    margin-top: 1rem;
+    color: black;
+    font-weight: 400;
+}
+
+.formBox{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.or{
+    color: rgb(122, 122, 122);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5px;
+    height: 3.12rem;
+   
+}
+.line{
+    margin-bottom: 0.8rem;
+}
+.date{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap:0.8rem;
+}
+
+.toggle{
+    color: rgb(12, 145, 185);
+    margin: 1rem 0;
+    /* position: relative; */
+    left: 13rem;
+}
+.toggle:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.btn3{  
+    cursor: pointer;
+    color: white;
+    background-color: rgb(179, 172, 172);
+    outline: none;
+    width: 22rem;
+    height: 3rem;
+    margin-top: 2rem;
+    border: none;
+    border-radius: 2rem;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    vertical-align: center;
+}
+.btn3:hover{
+    background-color: black;
+}
