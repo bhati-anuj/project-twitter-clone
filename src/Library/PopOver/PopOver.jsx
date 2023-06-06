@@ -33,7 +33,7 @@ const PopOver = () =>{
                     {...bindTrigger(popupState)}>
                         <img src="https://i.pravatar.cc/150?img=0" alt="profile" className={style.profile} />
                         {/* {user[0].name} */}
-                        <h1> User Name</h1>
+                        <h3> User Name</h3>
                         
                        
                         <MoreHorizOutlinedIcon />

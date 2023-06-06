@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./LeftSection.module.css";
 
 //Import Icons from @mui
@@ -17,26 +17,23 @@ import { blue } from "@mui/material/colors";
 
 import Buttons from "../../Components/Buttons/Buttons";
 import PopOver from "../../Library/PopOver/PopOver";
+import TweetForm from "../../Components/TweetForm/TweetForm";
 
 const arrs = [
   {
-  
     icon: <HomeIcon style={{ fontSize: "28px" }} />,
     text: "Home",
   },
   {
-   
     icon: <TagOutlinedIcon style={{ fontSize: "28px" }} />,
     text: "Explore",
   },
 
   {
- 
     icon: <NotificationsNoneIcon style={{ fontSize: "28px" }} />,
     text: "Notification",
   },
   {
-  
     icon: <MailOutlinedIcon style={{ fontSize: "28px" }} />,
     text: "Message",
   },
@@ -59,36 +56,52 @@ const arrs = [
 ];
 
 function LeftSection() {
+  const [openForm, setOpenForm] = useState();
+
+  const openTweetForm = () => setOpenForm(<TweetForm />);
+
   return (
     <>
       <div className={style.Container}>
         <div className={style.iconDiv}>
-          <TwitterIcon sx={{ color: blue[600], fontSize: "xx-large", marginLeft:"3rem" }} />
-       
-        <div className={style.listDiv}>
-          {arrs.map((arr, index) => {
-            return (
-              <>
-                <div key={index}>
-                  <Buttons
-                    className={style.icons}
-                    image={arr.icon}
-                    Sign={arr.text}
-                  />
-                </div>
-              </>
-            );
-          })}
-        </div>
-        <div className={style.tweetBtnDiv}>
-          <Buttons className={style.tweetBtn} Sign="Tweet" />
-        </div>
+          <TwitterIcon
+            sx={{
+              color: blue[600],
+              fontSize: "xxx-large",
+              marginLeft: "3rem",
+              marginTop: "20px",
+            }}
+          />
 
-          <div>
+          <div className={style.listDiv}>
+            {arrs.map((arr, index) => {
+              return (
+                <>
+                  <div key={index}>
+                    <Buttons
+                      className={style.icons}
+                      image={arr.icon}
+                      Sign={arr.text}
+                    />
+                  </div>
+                </>
+              );
+            })}
+          </div>
+          <div className={style.tweetBtnDiv}>
+            <Buttons
+              className={style.tweetBtn}
+              btnnext={openTweetForm}
+              Sign="Tweet"
+            />
+            <div className={style.tweetForm}>{openForm}</div>
+          </div>
+
+          {/* <div>
 
           <PopOver/>
-          </div>
-          </div>
+          </div> */}
+        </div>
       </div>
     </>
   );

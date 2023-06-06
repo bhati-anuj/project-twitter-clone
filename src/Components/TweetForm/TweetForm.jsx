@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./TweetForm.module.css";
 import { Paper } from "@mui/material";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
@@ -6,7 +6,11 @@ import { MdOutlineGifBox } from "react-icons/md";
 import { CiFaceSmile } from "react-icons/ci";
 import { IoLocationOutline } from "react-icons/io5";
 
+
 function TweetForm() {
+
+ 
+
   return (
     <>
       <Paper
@@ -25,6 +29,8 @@ function TweetForm() {
             <textarea
               name="content"
               className={style.textarea}
+              
+             
               placeholder="What is happening?!"
             ></textarea>
           </div>

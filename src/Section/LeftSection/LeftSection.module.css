@@ -54,3 +54,14 @@
     font-weight: 800;
     
 }
+
+.tweetForm{
+    display: flex;
+    background-color: aliceblue;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+   
+    width: 100%;
+}

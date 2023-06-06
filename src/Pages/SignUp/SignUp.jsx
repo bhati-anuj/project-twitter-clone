@@ -135,15 +135,15 @@ const SignUp = () => {
                     InputProps={{ style: { height: "3rem", fontSize: 20 } }}
                   />
 
-                  {toggleEmail ? (
+                  {!toggleEmail ? (
                     !emailError ? (
                       <TextField
                         id="outlined-basic"
                         label="Email"
                         variant="outlined"
                         value={email}
-                        sx={{ background: "white", width: "25rem" }}
-                        onchange={(e) => setEmail(e.target.value)}
+                        sx={{ background: "white", width: "25rem" ,marginTop:'10px'}}
+                        onChange={(e) => setEmail(e.target.value)}
                         InputProps={{ style: { height: "3rem", fontSize: 20 } }}
                       />
                     ) : (
@@ -152,7 +152,7 @@ const SignUp = () => {
                         id="outlined-error-helper-text"
                         variant="outlined"
                         value={email}
-                        sx={{ background: "white", width: "25rem" }}
+                        sx={{ background: "white", width: "25rem",marginTop:'10px' }}
                         onChange={(e) => setEmail(e.target.value)}
                         label="Email"
                         helperText="Please Enter a valid email."
@@ -165,13 +165,13 @@ const SignUp = () => {
                       label="Phone"
                       variant="outlined"
                       value={phone}
-                      sx={{ background: "white", width: "25rem" }}
+                      sx={{ background: "white", width: "25rem",marginTop:'10px' }}
                       onChange={(e) => setPhone(e.target.value)}
                       InputProps={{ style: { height: "3rem", fontSize: 20 } }}
                     />
                   )}
                   <span onClick={handleToggle} className={style.toggle}>
-                    Use{toggleEmail ? "Phone" : "Email"} instead
+                    Use {!toggleEmail ? "Phone" : "Email"} instead
                   </span>
 
                   {!passwordError ? (
