@@ -11,6 +11,7 @@ function Searchbar(){
             placeholder="Search Twitter"
             className={style.searchbar}
             type="text"
+            
             />
             </button>
         </div>
