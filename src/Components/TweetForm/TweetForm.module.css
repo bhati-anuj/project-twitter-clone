@@ -16,6 +16,7 @@
   border-style: none;
   width: 100%;
   height: 175%;
+  outline-style: none;
 }
 .iconsDiv {
   display: flex;

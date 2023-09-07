@@ -1,6 +1,7 @@
 .container{  
     display: flex;    
     justify-content: center;
+    margin-top: 10px;
 }
 
 .searchBtn{
@@ -20,12 +21,9 @@
     height: 100%;
     border-style: none;   
     border-radius: 50px;
+    outline-style: none;
   
 }
 .searchBtn:hover{
     border: 1px solid #00acee;
-}
-input:focus{
-    /* border-style: none; */
-    border: 2px solid red;
 }

@@ -11,6 +11,7 @@ function Feed() {
 
 
 const[showMore, setShowMore] = useState(false);
+
 const tweetToShow = showMore? tweets :tweets.slice(0,20);
 
 const handleShowMoreClick=()=>{
